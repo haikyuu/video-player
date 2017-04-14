@@ -1,5 +1,9 @@
 A video player built with react-native
 
+What this looks like
+=====
+![video player GIF](preview.gif)
+
 Run it
 =====
 
