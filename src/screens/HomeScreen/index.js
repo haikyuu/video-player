@@ -24,7 +24,7 @@ export default class HomeScreen extends Component{
 
 		const { navigate } = this.props.navigation;
 		var options = {
-		  title: 'Select Avatar',
+		  title: 'Select Video',
 		  mediaType: 'video'
 		};
 		ImagePicker.showImagePicker(options, (response) => {
