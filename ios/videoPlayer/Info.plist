@@ -57,5 +57,7 @@
 	<string>YES</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>YES</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>to display video</string>
 </dict>
 </plist>
