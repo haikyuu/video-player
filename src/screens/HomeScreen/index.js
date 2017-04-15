@@ -7,7 +7,6 @@ import {
 } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 
-
 export default class HomeScreen extends Component{
 	static navigationOptions = {
     	title: 'Welcome',
