@@ -14,3 +14,11 @@ This assumes you have already installed [node.js](https://nodejs.org/en/) and [r
 - react-native run-ios
 
 In order to try it in the ios simulator, drag a video to the simulator to be able to access it in the simulator gallery.
+
+Features
+=====
+
+- Load video from gallery
+- Play/Pause the video
+- Mute video
+- Display progress
