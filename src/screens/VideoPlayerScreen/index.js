@@ -22,10 +22,13 @@ export default class VideoPlayerScreen extends Component{
 		this.state = {
 			paused: false,
 			muted: false,
+			progress: 0,
+			currentTime: undefined,
 		}
 
 		this.play = this.play.bind(this)
 		this.mute = this.mute.bind(this)
+		this.setTime = this.setTime.bind(this)
 	}
 	play(){
 		this.setState({
@@ -37,9 +40,10 @@ export default class VideoPlayerScreen extends Component{
 			muted: !this.state.muted,
 		})
 	}
-	onLoad(event){
-		console.log('event', event)
-
+	setTime(currentTime){
+		this.setState({
+			currentTime,
+		})
 	}
 	render(){
 		const video = this.props.navigation.state.params.video
@@ -61,12 +65,12 @@ export default class VideoPlayerScreen extends Component{
 			       playWhenInactive={false}                // [iOS] Video continues to play when control or notification center are shown.
 			       progressUpdateInterval={250.0}          // [iOS] Interval to fire onProgress (default to ~250ms)
 			       // onLoadStart={this.loadStart}            // Callback when video starts to load
-			       onLoad={this.onLoad}               // Callback when video loads
-			       // onProgress={this.setTime}               // Callback every ~250ms with currentTime
+			       // onLoad={this.onLoad}               // Callback when video loads
+			       onProgress={this.setTime}               // Callback every ~250ms with currentTime
 			       // onEnd={this.onEnd}                      // Callback when playback finishes
 			       // onError={this.videoError}               // Callback when video cannot be loaded
 			       // onBuffer={this.onBuffer}                // Callback when remote video is buffering
-			       // onTimedMetadata={this.onTimedMetadata}  // Callback when the stream receive some metadata
+			       onTimedMetadata={this.onTimedMetadata}  // Callback when the stream receive some metadata
 			        />
 
 			    <ControlBar 
@@ -75,6 +79,7 @@ export default class VideoPlayerScreen extends Component{
 			    	paused={this.state.paused}
 			    	onPlay={this.play}
 			    	onMute={this.mute}
+			    	currentTime={this.state.currentTime}
 			    />
 			</View>
 		)
