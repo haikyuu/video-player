@@ -4,6 +4,7 @@ import {
 	Text,
 	StyleSheet,
 	Dimensions,
+	TouchableWithoutFeedback,
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -15,6 +16,15 @@ import {
 const { width, height } = Dimensions.get('window')
 
 export default class ControlBar extends Component{
+	constructor(props){
+		super(props)
+		this.onProgressPress = this.onProgressPress.bind(this)
+	}
+	onProgressPress(event){
+		const { player, currentTime } = this.props
+		let time = (event.nativeEvent.pageX / width) * currentTime.playableDuration
+		player.seek(time)
+	}
 	render(){
 		const { muted, paused, onPlay, onMute, style, currentTime } = this.props
 		let progress = 0
@@ -23,14 +33,19 @@ export default class ControlBar extends Component{
 		}
 		return (
 			<View style={[style, styles.container]}>
+				<TouchableWithoutFeedback
+				 style={styles.progressContainer}
+				 onPress={this.onProgressPress}>
+					<View
+						onPress={this.onProgressPress}
+					 	style={styles.progressSubContainer}>
+						<View style={[styles.progressBeforeCursor, {width: `${progress}%`}]} />
 
-				<View style={styles.progressContainer}>
-					<View style={[styles.progressBeforeCursor, {width: `${progress}%`}]} />
+						<View style={styles.progressCursor} />
 
-					<View style={styles.progressCursor} />
-
-					<View style={[styles.progressAfterCursor, {flex: 1}]} />
-				</View>
+						<View style={[styles.progressAfterCursor, {flex: 1}]} />
+					</View>
+				</TouchableWithoutFeedback>
 
 				<View style={[styles.buttonsContainer]}>
 					<View style={styles.muteButtonContainer}>
@@ -62,10 +77,14 @@ const styles = StyleSheet.create({
 	},
 
 	progressContainer: {
-		flexDirection: 'row',
 		width: '100%',
 		height: 5,
 		zIndex: 20,
+	},
+	progressSubContainer: {
+		flexDirection: 'row',
+		width: '100%',
+		height: 5
 	},
 	progressBeforeCursor: {
 		backgroundColor: 'steelblue',

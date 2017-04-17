@@ -80,6 +80,7 @@ export default class VideoPlayerScreen extends Component{
 			    	onPlay={this.play}
 			    	onMute={this.mute}
 			    	currentTime={this.state.currentTime}
+			    	player={this.player}
 			    />
 			</View>
 		)

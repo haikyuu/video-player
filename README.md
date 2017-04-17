@@ -21,4 +21,4 @@ Features
 - Load video from gallery
 - Play/Pause the video
 - Mute video
-- Display progress
+- Display/Change progress of video
