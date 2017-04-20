@@ -2,7 +2,7 @@ A video player built with react-native
 
 What this looks like
 =====
-![video player GIF](videoPlayer.gif)
+![video player GIF](screenshot.png)
 
 Run it
 =====
